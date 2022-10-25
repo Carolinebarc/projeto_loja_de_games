@@ -13,7 +13,7 @@ export class UsuarioService {
  
     ){}
 
-    async finByUsuario (usuario: string): Promise<Usuario> {
+    async findByUsuario (usuario: string): Promise<Usuario> {
         return await this.usuarioRepository.findOne({
             where: {
                 usuario:usuario 
@@ -42,7 +42,7 @@ export class UsuarioService {
     }
 
     async create (usuario: Usuario): Promise<Usuario> {
-        let buscaUsuario= await this.finByUsuario (usuario.usuario)
+        let buscaUsuario= await this.findByUsuario (usuario.usuario)
         
 
         if (!buscaUsuario){
@@ -54,7 +54,7 @@ export class UsuarioService {
 
     async update(usuario: Usuario): Promise<Usuario> {
         let updateUsuario: Usuario = await this.findById(usuario.id)
-        let buscaUsuario = await this.finByUsuario(usuario.usuario)
+        let buscaUsuario = await this.findByUsuario(usuario.usuario)
 
         if (!updateUsuario)
         throw new HttpException('Usuario não encontrado', HttpStatus.NOT_FOUND); 
