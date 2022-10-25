@@ -21,6 +21,9 @@ export class ProdutoService {
         let produto = await this.produtoRepository.findOne({
             where: {
                 id
+            }, 
+            relations: {
+                usuario: true 
             }
         });
         if (!produto)
